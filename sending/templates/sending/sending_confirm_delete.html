@@ -1,0 +1,20 @@
+{% extends 'users/base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h1 class="text-warning">Подтверждение удаления</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+            Подтверждаете удаление {{ object.message }}?
+            </table>
+            <input class="btn-danger" type="submit" value="Удалить">
+
+        </form>
+    <a type="button" href="{% url 'sending:update_sending' object.id %}"
+               class="btn btn-lg btn-block btn-link">Назад</a>
+    </div>
+{% endblock %}

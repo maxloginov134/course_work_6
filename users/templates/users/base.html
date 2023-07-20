@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} {% endblock %}</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+    <div class="container-fluid">
+     <a class="navbar-brand" href="#">Главная {% now "D d M Y" %} </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                {% if user.is_authenticated %}
+
+                    {#                    <li class="nav-item">#}
+                    {#                        <a class="nav-link" href="#">Profile</a>#}
+                    {#                    </li>#}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Операции с письмами</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'sending:create_message' %}">Создать письмо</a></li>
+                            <li><a class="dropdown-item" href="{% url 'sending:list_message' %}">Список писем</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Операции с рассылками</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'sending:create_sending' %}">Создать рассылку</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'sending:list_sending' %}">Список рассылок</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'sending:list_try_sending' %}">Отчеты о рассылках</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Клиенты</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'customer:create_customer' %}">Создать клиента</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'customer:list_customers' %}">Список клиентов</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">{{ user.email }}</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'users:logout' %}">Выйти</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'users:profile' %}">Профиль</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="p-2 btn btn-outline-light" href="{% url 'users:list_users' %}">Список пользователей</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="p-2 btn btn-outline-light" href="{% url 'blog:list_blogs' %}">Блог</a>
+                    </li>
+            </ul>
+
+
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'user:login' %}">Войти</a>
+                    </li>
+                {% endif %}
+        </div>
+    </div>
+</nav>
+<br>
+<br>
+<br>
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+<div class="container">
+    <footer class="py-3 my-4">
+
+        <p class="text-center text-muted">&copy; 2023 Sky Сorporation</p>
+    </footer>
+</div>
+
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

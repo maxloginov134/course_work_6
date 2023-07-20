@@ -1,0 +1,47 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+<div class="container">
+
+        <div class="col-lg-5">
+            {% if form.non_field_errors or messages %}
+                <div class="alert {% if messages %} alert-success {% else %} alert-warning {% endif %}alert-dismissible fade show"
+                     role="alert"
+                     style="margin-top: 50px;">
+
+                    {% if messages %}
+                        {% for mes in messages %}
+                            {{ mes }}
+                        {% endfor %}
+                    {% else %}
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    {% endif %}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Авторизация</h3>
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'user:login' %}" method="post">
+                        {% csrf_token %}
+                        <table>
+                            {{ form.as_table }}
+                        </table>
+                        <input class="btn btn-primary" type="submit" value="Войти">
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <div class="small"><a href="{% url 'user:register' %}">Нужен аккаунт? Зарегистрируйся!</a></div>
+                    <div class="list-group-horizontal card-footer text-center small">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
