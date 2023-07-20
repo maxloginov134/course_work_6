@@ -9,7 +9,7 @@ admin.site.register(Message)
 class SendingAdmin(admin.ModelAdmin):
 
     list_display = ('user', 'get_customer', 'message', 'created_at', 'updated_at',
-                'interval', 'status_sending', 'start_sending_date', 'start_sending_time')
+                    'interval', 'status_sending', 'start_sending_date', 'start_sending_time')
     readonly_fields = ('created_at', 'updated_at')
 
 
