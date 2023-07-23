@@ -135,7 +135,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
 
+EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_HOST_USER = 'maxkondratiev@mail.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_PASSWORD = os.getenv('PASSWORD_MAIL')
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
 
 
 MEDIA_URL = '/media/'
