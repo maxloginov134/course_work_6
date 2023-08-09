@@ -1,4 +1,4 @@
-# Work_№6 (Интерфейс по управлению рассылками)
+# Интерфейс по управлению рассылками
 <img src="https://github.com/blackcater/blackcater/raw/main/images/Hi.gif" height="32"/></h1>
 
 Описание проекта:
